@@ -66,6 +66,7 @@ export default function EventDashboardPage() {
   const [statuses, setStatuses] = useState<Record<string, MilestoneStatus>>({});
   const [statusesLoaded, setStatusesLoaded] = useState(false);
   const [refreshedAt, setRefreshedAt] = useState<Date | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -103,6 +104,14 @@ export default function EventDashboardPage() {
     // The form opens in a new tab, so refresh when the user comes back.
     window.addEventListener("focus", loadStatuses);
     return () => window.removeEventListener("focus", loadStatuses);
+  }, [loadStatuses]);
+
+  // Manual refresh: show a spinner on the button, and hold it for a beat so a
+  // fast response still reads as "something happened".
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await Promise.all([loadStatuses(), new Promise((r) => setTimeout(r, 400))]);
+    setRefreshing(false);
   }, [loadStatuses]);
 
   const statusOf = useCallback(
@@ -195,7 +204,7 @@ export default function EventDashboardPage() {
             )}
           </p>
         </div>
-        <Button variant="secondary" onClick={loadStatuses}>
+        <Button variant="secondary" onClick={handleRefresh} loading={refreshing}>
           Refresh
         </Button>
       </div>
@@ -330,7 +339,8 @@ export default function EventDashboardPage() {
                   <li
                     key={m.id}
                     aria-current={isCurrent ? "step" : undefined}
-                    className={`flex items-center justify-between gap-4 border-[2px] border-[var(--foreground)] px-4 py-3 ${
+                    style={{ animationDelay: `${i * 50}ms` }}
+                    className={`flex animate-page-in items-center justify-between gap-4 border-[2px] border-[var(--foreground)] px-4 py-3 ${
                       isLocked ? "opacity-50" : ""
                     } ${isCurrent ? "bg-[var(--accent)]/15" : ""}`}
                   >
@@ -384,11 +394,11 @@ export default function EventDashboardPage() {
               aria-valuemax={required.length}
               aria-valuenow={approvedCount}
               aria-label="Milestones approved"
-              className="h-3 w-full border-[2px] border-[var(--foreground)]"
+              className="h-3 w-full overflow-hidden border-[2px] border-[var(--foreground)]"
             >
               <div
-                className="h-full bg-[var(--accent)]"
-                style={{ width: `${progressPct}%` }}
+                className="h-full origin-left bg-[var(--accent)] transition-[width] duration-700 ease-out animate-grow-x"
+                style={{ width: `${progressPct}%`, animationDelay: "200ms" }}
               />
             </div>
             <p className="font-body text-sm text-[var(--foreground)]/70">
@@ -428,7 +438,10 @@ export default function EventDashboardPage() {
           </HardCard>
 
           {refreshedAt ? (
-            <p className="font-body text-xs text-[var(--foreground)]/50">
+            <p
+              key={refreshedAt.getTime()}
+              className="animate-fade-in font-body text-xs text-[var(--foreground)]/50"
+            >
               Updated {refreshedAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}
             </p>
           ) : null}

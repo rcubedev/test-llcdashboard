@@ -4,7 +4,7 @@ export const genesisEvent: EventConfig = {
   id: "genesis",
   name: "Limelight GENESIS",
   tagline: "Pilot event",
-  locked: true,
+  locked: false,
   formUrl: "https://limelightcreatives.fillout.com/t/qyMeFhFzZuus",
   theme: {
     accent: "#01995C",

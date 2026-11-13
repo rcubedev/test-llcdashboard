@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export type AppLink = {
   name: string;
@@ -19,30 +21,96 @@ function LaunchpadSquiggle(props: React.SVGProps<SVGSVGElement>) {
         strokeWidth="8"
         strokeLinecap="square"
         strokeLinejoin="round"
+        // Normalised length so the draw-in animation works for any path.
+        // The gap (2) is longer than the path (1) so no stray cap shows at the start.
+        pathLength={1}
+        className="animate-draw [stroke-dasharray:1_2]"
       />
     </svg>
   );
 }
 
-function AppTile({ app }: { app: AppLink }) {
+type TileState = "idle" | "launching" | "dimmed";
+
+function AppTile({
+  app,
+  index,
+  state,
+  onLaunch,
+}: {
+  app: AppLink;
+  index: number;
+  state: TileState;
+  onLaunch: (name: string) => void;
+}) {
+  const launching = state === "launching";
+  const dimmed = state === "dimmed";
+
   const content = (
-    <div className="group flex w-24 flex-col items-center gap-3 text-center sm:w-28">
+    <div
+      className={`group flex w-24 flex-col items-center gap-3 text-center transition-[opacity,filter] duration-300 sm:w-28 ${
+        dimmed ? "opacity-40 grayscale" : ""
+      } ${launching || dimmed ? "pointer-events-none" : ""}`}
+    >
       <div className="relative aspect-square w-full">
-        <div className="absolute inset-0 translate-x-0 translate-y-0 bg-black transition-transform duration-150 group-hover:translate-x-1 group-hover:translate-y-1" />
-        <div className="absolute inset-0 flex items-center justify-center border-2 border-black bg-black transition-transform duration-150 group-hover:-translate-x-[2px] group-hover:-translate-y-[2px]">
+        <div
+          className={`absolute inset-0 bg-black transition-transform duration-150 ${
+            launching
+              ? "translate-x-0 translate-y-0"
+              : "translate-x-0 translate-y-0 group-hover:translate-x-1 group-hover:translate-y-1 group-active:translate-x-0 group-active:translate-y-0"
+          }`}
+        />
+        <div
+          className={`absolute inset-0 flex items-center justify-center border-2 border-black bg-black ${
+            launching
+              ? "animate-launch"
+              : "transition-transform duration-150 group-hover:-translate-x-[2px] group-hover:-translate-y-[2px] group-active:translate-x-0 group-active:translate-y-0 group-active:scale-95"
+          }`}
+        >
           <Image src={app.icon} alt="" fill className="object-cover" />
+
+          {launching ? (
+            <span
+              aria-hidden
+              className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 animate-fade-in"
+            >
+              <span className="h-8 w-8 animate-spin rounded-full border-[3px] border-white/30 border-t-white" />
+            </span>
+          ) : null}
         </div>
       </div>
       <span className="max-w-xl text-xl font-body font-bold">{app.name}</span>
+      {launching ? <span className="sr-only" role="status">Opening {app.name}…</span> : null}
     </div>
   );
 
+  const entrance = {
+    className: "block animate-tile-in rounded-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[var(--foreground)]",
+    style: { animationDelay: `${150 + index * 60}ms` },
+  };
+
   return app.external ? (
-    <a href={app.href} target="_blank" rel="noreferrer noopener">
+    <a
+      href={app.href}
+      target="_blank"
+      rel="noreferrer noopener"
+      {...entrance}
+    >
       {content}
     </a>
   ) : (
-    <Link href={app.href}>{content}</Link>
+    <Link
+      href={app.href}
+      aria-busy={launching || undefined}
+      onClick={(e) => {
+        // Let ctrl/cmd/middle-click open in a new tab without a fake "loading" state.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        onLaunch(app.name);
+      }}
+      {...entrance}
+    >
+      {content}
+    </Link>
   );
 }
 
@@ -52,18 +120,40 @@ interface LaunchpadProps {
 }
 
 export default function Launchpad({ apps, header }: LaunchpadProps) {
+  // Name of the app the person just clicked, while we wait for the route to load.
+  const [launching, setLaunching] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  // Clear on any route change so coming back (back button / cached page) never
+  // shows a stale spinner.
+  useEffect(() => {
+    setLaunching(null);
+  }, [pathname]);
+
   return (
     <main className="flex h-screen flex-col overflow-hidden">
       
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 text-center overflow-y-auto">
-        <h1 className="relative mt-4 inline-block font-display text-[clamp(2.75rem,6vw,4.5rem)] font-bold leading-[0.9] tracking-[-0.06em]">
+        <h1 className="relative mt-4 inline-block animate-page-in font-display text-[clamp(2.75rem,6vw,4.5rem)] font-bold leading-[0.9] tracking-[-0.06em]">
           Welcome!
           <LaunchpadSquiggle className="pointer-events-none absolute left-0 top-full mt-1 h-auto w-full text-[var(--ontik-accent)]" />
         </h1>
 
         <div className="mt-16 flex flex-wrap justify-center gap-x-8 gap-y-12">
-          {apps.map((app) => (
-            <AppTile key={app.name} app={app} />
+          {apps.map((app, i) => (
+            <AppTile
+              key={app.name}
+              app={app}
+              index={i}
+              state={
+                launching === null
+                  ? "idle"
+                  : launching === app.name
+                    ? "launching"
+                    : "dimmed"
+              }
+              onLaunch={setLaunching}
+            />
           ))}
         </div>
 

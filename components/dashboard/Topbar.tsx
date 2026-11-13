@@ -52,7 +52,7 @@ export function Topbar({ label = "Dashboard", user, onLogout }: TopbarProps) {
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-haspopup="menu"
-          className="flex items-center gap-2 rounded-none px-1 py-1 font-body text-sm transition-colors hover:bg-[var(--surface-hover)]"
+          className="flex items-center gap-2 rounded-none px-1 py-1 font-body text-sm transition-[background-color,transform] duration-150 hover:bg-[var(--surface-hover)] active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
         >
           <span className="flex h-8 w-8 items-center justify-center border-[2px] border-[var(--foreground)] bg-[var(--surface)] font-display text-xs">
             {initials || "?"}
@@ -70,7 +70,7 @@ export function Topbar({ label = "Dashboard", user, onLogout }: TopbarProps) {
             />
             <div
               role="menu"
-              className="absolute right-0 z-20 mt-2 w-max min-w-56 max-w-[min(20rem,calc(100vw-2rem))] border-[2px] border-[var(--foreground)] bg-[var(--background)] p-2 shadow-[4px_4px_0_0_var(--foreground)]"
+              className="absolute right-0 z-20 mt-2 origin-top-right animate-pop-in w-max min-w-56 max-w-[min(20rem,calc(100vw-2rem))] border-[2px] border-[var(--foreground)] bg-[var(--background)] p-2 shadow-[4px_4px_0_0_var(--foreground)]"
             >
               <div className="border-b border-[var(--border)] px-3 py-2">
                 <p className="break-words font-body text-sm">{user.name}</p>
@@ -88,7 +88,7 @@ export function Topbar({ label = "Dashboard", user, onLogout }: TopbarProps) {
                   variant="secondary"
                   className="w-full"
                   onClick={handleLogout}
-                  disabled={isLoggingOut}
+                  loading={isLoggingOut}
                 >
                   Log out
                 </Button>
@@ -103,7 +103,7 @@ export function Topbar({ label = "Dashboard", user, onLogout }: TopbarProps) {
           role="status"
           aria-live="polite"
           aria-label="Logging out"
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-[color-mix(in_srgb,var(--background)_60%,transparent)] backdrop-blur-md"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-[color-mix(in_srgb,var(--background)_60%,transparent)] backdrop-blur-md animate-fade-in"
         >
           <span
             aria-hidden
