@@ -98,6 +98,11 @@ tasks.test {
     jvmArgs("-Xshare:off")
 }
 
+// bootRun needs a postgres you run yourself, bootTestRun starts one (see LocalDashboardApp)
+tasks.bootRun {
+    systemProperty("spring.profiles.active", "dev")
+}
+
 /**
  * Adds the given [jar] as a java agent using the `-javaagent:<jar>` JVM argument
  *
