@@ -2,8 +2,8 @@ spring:
   application:
     name: limelight-dashboard
   config:
-    # what organisers edit: the events and their milestones
-    import: classpath:content/events.yml
+    # what organisers edit: the events and their milestones, and equipment booking
+    import: classpath:content/events.yml, classpath:content/equipment.yml
   datasource:
     # either the postgresql://user:password@host/db?sslmode=require address neon gives you (see DatabaseUrl)
     # or a jdbc:postgresql://... url with DATABASE_USER and DATABASE_PASSWORD

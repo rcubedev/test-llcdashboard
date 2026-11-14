@@ -1,0 +1,52 @@
+# Equipment booking (/participant/<event>/equipment). The Google Sheet is the source of truth for quantities,
+# per-team limits and timeslots; this file only holds what the sheet can't say.
+#
+# The sheet layout this expects (per category, per day):
+#   * a native Table named "<table-prefix> Day <n>", e.g. "Gimbal Day 1"
+#   * its first column is headed "Timeslot" and holds each slot's start time
+#   * every other column is one physical unit (Slot 1 = unit 1, ...) and its cells hold the name of the team
+#     that booked it, or are empty
+#   * a config block somewhere on the tab: a label cell with the value in the cell to its right
+#     (e.g. "Gimbal Quantity" | 3)
+#
+# To add equipment: add a category here AND add "<prefix> Day n" tables plus the two config rows to the sheet.
+# Put the photo in static/equipment/ to match `image`.
+equipment:
+  # "Day 1" in a table name is the first day here, "Day 2" the second, and so on.
+  # opens: Sydney time when booking for that day opens; leave it out to open straight away.
+  days:
+    - date: 2026-10-24
+      label: Saturday
+      opens: 2026-10-24T10:00
+    - date: 2026-10-25
+      label: Sunday
+      opens: 2026-10-25T09:00
+  # Browsers wait a random 0..N seconds after a day opens before enabling the RESERVE buttons, which smooths
+  # the opening rush. 0 = strictly first-come. The server enforces the real opening time.
+  jitter-seconds: 8
+  slot-minutes: 60
+  categories:
+    - id: gimbal
+      label: Osmo Mobile 8 (Phone Gimbal)
+      description: Handheld stabilisers for smooth, moving shots.
+      image: /equipment/osmo.jpg
+      table-prefix: Gimbal
+      unit-name: Gimbal
+      quantity-label: Gimbal Quantity
+      max-sessions-label: Max Gimbal Sessions
+    - id: mic
+      label: DJI Mic Mini (Lapel Mics)
+      description: Clip-on mics for clean and convenient audio.
+      image: /equipment/micmini.webp
+      table-prefix: Microphone
+      unit-name: Mic
+      quantity-label: Microphone Quantity
+      max-sessions-label: Max Microphone Sessions
+    - id: tripod
+      label: Tripods
+      description: Sturdy stands for steady, hands-free shots.
+      image: /equipment/tripod.avif
+      table-prefix: Tripod
+      unit-name: Tripod
+      quantity-label: Tripod Quantity
+      max-sessions-label: Max Tripod Sessions
