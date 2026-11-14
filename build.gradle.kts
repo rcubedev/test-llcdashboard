@@ -38,6 +38,7 @@ dependencies {
     mockitoAgent(springBoot)
 
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
+    implementation("org.springframework.boot:spring-boot-starter-session-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-restclient") // google sheets
     implementation("org.springframework.boot:spring-boot-starter-flyway")

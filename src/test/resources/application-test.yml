@@ -1,0 +1,41 @@
+dashboard:
+  auth:
+    client-id: app_test
+    client-secret: test-dashboard-secret-test-dashboard
+
+# three events besides genesis: one open, one locked and one switched off
+events:
+  film-fest:
+    name: Film Fest
+    active: true
+    form-url: https://forms.example/t/film-fest
+    theme:
+      accent: "#123456"
+    team-size: 3
+    milestones:
+      - id: storyboard
+        label: Storyboard
+        target-time: Day 1, morning
+        description: Plan every shot.
+        evidence: A storyboard
+        prize: Stickers
+      - id: shoot
+        label: Shoot
+        evidence: Footage
+      - id: final
+        label: Final Cut
+      - id: helper
+        label: Helping Hand
+        bonus: true
+        prize: A badge
+  closed:
+    name: Closed Event
+    active: true
+    locked: true
+  retired:
+    name: Retired Event
+    active: false
+
+logging:
+  level:
+    org.flywaydb: warn
