@@ -1,0 +1,93 @@
+spring:
+  application:
+    name: limelight-dashboard
+  datasource:
+    # either the postgresql://user:password@host/db?sslmode=require address neon gives you (see DatabaseUrl)
+    # or a jdbc:postgresql://... url with DATABASE_USER and DATABASE_PASSWORD
+    # on neon use the direct address, not "-pooler": the app keeps its own pool and flyway needs session locks
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER:}
+    password: ${DATABASE_PASSWORD:}
+    hikari:
+      # connections only stay open while in use so neon (and the host) can sleep when nobody uses the dashboard
+      # neon's free plan has 100 compute-hours a month per project, a pool that never closes keeps it
+      # awake 24/7 and uses them up by about day 16
+      minimum-idle: 0
+      idle-timeout: 60000
+      maximum-pool-size: 5
+      data-source-properties:
+        # send text parameters untyped like the old app's neon driver did, so postgres works out the type:
+        # a team id compares to a uuid column and an answers string goes into a jsonb column
+        stringtype: unspecified
+  flyway:
+    # the old app's tables were made by hand and auth may share this database with its own
+    # flyway_schema_history, so the dashboard keeps its own history and V1 only creates what's missing
+    table: dashboard_schema_history
+    baseline-on-migrate: true
+    baseline-version: 0
+  session:
+    # signed in for as long as auth keeps people signed in, counted from their last visit
+    timeout: 30d
+    jdbc:
+      # V2__sessions.sql creates the tables
+      initialize-schema: never
+      table-name: DASHBOARD_SESSION
+      # deletes expired sessions; hourly rather than every minute so the database can sleep
+      cleanup-cron: "0 0 * * * *"
+  web:
+    resources:
+      cache:
+        # every page links its css, js and images with ?v=<content hash> (Assets) so they can be kept a year
+        cachecontrol:
+          max-age: 365d
+          cache-public: true
+  threads:
+    virtual:
+      enabled: true
+
+# /actuator/health is {"status":"UP"} once the app runs and reaches the database, nothing else is exposed
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+server:
+  # hosts say which port to listen on in PORT (on Vercel, set it to 8080 yourself)
+  port: ${PORT:8080}
+  # behind the host's proxy: trust its X-Forwarded-* headers for https
+  forward-headers-strategy: native
+
+gg:
+  jte:
+    use-precompiled-templates: true
+
+dashboard:
+  base-url: ${DASHBOARD_BASE_URL:https://dashboard.limelightcreatives.org}
+  auth:
+    url: ${AUTH_URL:https://auth.limelightcreatives.org}
+    # from the dashboard's entry on auth's apps page
+    client-id: ${AUTH_CLIENT_ID:}
+    client-secret: ${AUTH_CLIENT_SECRET:}
+  teams-locked: ${TEAMS_LOCKED:false}
+  # e.g. 2026-11-01T23:59:00+11:00, after this teams can no longer change their project
+  submissions-close-at: ${SUBMISSIONS_CLOSE_AT:}
+  fillout:
+    # fillout calls /api/fillout/webhook?secret=<this> for every milestone submission
+    webhook-secret: ${FILLOUT_WEBHOOK_SECRET:}
+    # optional: an "Open in Fillout" link on the staff milestones page
+    results-url: ${FILLOUT_RESULTS_URL:${NEXT_PUBLIC_FILLOUT_RESULTS_URL:}}
+  # participants and check-ins (tabs "Attendees" and "Check-ins"), share the sheet with the service account as Editor
+  # a private key is the private_key from the service account's json file, as it is or in base64
+  attendee-sheet:
+    service-account-email: ${GOOGLE_SERVICE_ACCOUNT_EMAIL:}
+    private-key: ${GOOGLE_PRIVATE_KEY_B64:${GOOGLE_PRIVATE_KEY:}}
+    sheet-id: ${GOOGLE_SHEET_ID:}
+  # the equipment booking grid (see content/equipment.yml for the layout it expects)
+  equipment-sheet:
+    service-account-email: ${GOOGLE_SERVICE_EQUIPMENT_EMAIL:}
+    # the old app read GOOGLE_EQUIPMENT_PRIVATE_KEY_B64 for both, so the plain one never worked there
+    private-key: ${GOOGLE_EQUIPMENT_PRIVATE_KEY_B64:${GOOGLE_EQUIPMENT_PRIVATE_KEY:}}
+    sheet-id: ${EQUIPMENT_SHEET_ID:}
+    # optional: the tab with the booking tables, by default the first tab that has tables
+    tab: ${EQUIPMENT_SHEET_TAB:}

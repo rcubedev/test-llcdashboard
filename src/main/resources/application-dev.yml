@@ -1,0 +1,25 @@
+# running locally (./gradlew bootTestRun or bootRun): http://localhost:3000
+spring:
+  datasource:
+    # bootRun: a postgres you run yourself (bootTestRun starts its own and overrides this)
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/dashboard}
+    username: ${DATABASE_USER:dashboard}
+    password: ${DATABASE_PASSWORD:dashboard}
+
+server:
+  # the auth app runs on 8080
+  port: ${PORT:3000}
+
+gg:
+  jte:
+    use-precompiled-templates: false
+    development-mode: true
+    class-directory: build/jte-classes
+
+dashboard:
+  base-url: http://localhost:3000
+  # DEV_ROLE=STAFF (or PARTICIPANT) skips signing in: everyone is a pretend "Development User" (see DevSignIn)
+  dev-role: ${DEV_ROLE:}
+  auth:
+    # the auth app running locally (its ./gradlew bootTestRun)
+    url: ${AUTH_URL:http://localhost:8080}
