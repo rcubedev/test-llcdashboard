@@ -1,0 +1,243 @@
+@import "tailwindcss" source(none);
+
+/* where class names are used (the same folders as tailwind { content } in build.gradle.kts) */
+@source "../jte";
+@source "../resources/static/js";
+@source "../java";
+
+@font-face {
+  font-family: "Classica";
+  src: url("/fonts/classica/Classica-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Classica";
+  src: url("/fonts/classica/Classica-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* the same weights as the old app: SemiBold is "bold", Bold is "black" */
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("/fonts/hanken-grotesk/HankenGrotesk-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("/fonts/hanken-grotesk/HankenGrotesk-SemiBold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("/fonts/hanken-grotesk/HankenGrotesk-Bold.woff2") format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Classica", ui-serif, Georgia, serif;
+  --font-body: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-page-in: page-in 320ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  --animate-tile-in: tile-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  --animate-pop-in: pop-in 160ms ease-out backwards;
+  --animate-fade-in: fade-in 200ms ease-out backwards;
+  --animate-launch: launch 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-draw: draw 700ms ease-out 200ms backwards;
+  --animate-grow-x: grow-x 700ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes tile-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.9);
+    }
+  }
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.96);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes launch {
+    40% {
+      transform: scale(0.92);
+    }
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes grow-x {
+    from {
+      transform: scaleX(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-in,
+  .animate-tile-in,
+  .animate-pop-in,
+  .animate-fade-in,
+  .animate-launch,
+  .animate-draw,
+  .animate-grow-x {
+    animation: none;
+  }
+}
+
+/* a part of the page fetched again in the background comes in without its entrance */
+[data-refreshed] :is(.animate-page-in, .animate-grow-x) {
+  animation: none;
+}
+
+:root {
+  --background: #fffdf5;
+  --foreground: #202c44;
+  --dots: #b2afa7;
+
+  --surface: #f5f7ed;
+  --surface-hover: #e8eee0;
+
+  /* events override --accent (and --accent-secondary) inside their own dashboard */
+  --accent: #9fc031;
+  --ontik-accent: #01995C;
+  --accent-foreground: #202c44;
+
+  --cyan: #81d7d4;
+  --cyan-bright: #58c8d4;
+  --blue: #202c44;
+  --lime: #9fc031;
+
+  --border: rgba(32, 44, 68, 0.18);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+
+  /* dotted background */
+  --d: 1px;
+  background-image: radial-gradient(
+    circle at var(--d) var(--d),
+    var(--dots) calc(var(--d) - 1px),
+    transparent var(--d)
+  );
+  background-size: 25px 25px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* the building blocks every page uses; utilities (e.g. border-dashed, bg-[var(--accent)]) still override them */
+@layer components {
+  /* a card with a hard offset shadow (the old app's HardCard) */
+  .card {
+    @apply relative border-[2px] border-[var(--foreground)] bg-[var(--surface)] p-6 shadow-[8px_8px_0_0_var(--foreground)];
+  }
+
+  .card-flat {
+    @apply relative border-[2px] border-[var(--foreground)] bg-[var(--surface)] p-6;
+  }
+
+  .tag {
+    @apply inline-block border-[2px] border-[var(--foreground)] px-2 py-0.5 font-display text-[0.7rem] font-bold uppercase tracking-[0.08em];
+  }
+
+  .tag-active {
+    @apply bg-[var(--foreground)] text-[var(--background)];
+  }
+
+  .label {
+    @apply font-display text-[0.7rem] font-bold uppercase tracking-[0.08em] text-[var(--foreground)]/60;
+  }
+
+  /* the main buttons (the old components/Button) */
+  .btn {
+    @apply relative inline-block border-[2px] border-[var(--foreground)] px-4 py-2 text-center font-display font-bold
+      translate-x-0 translate-y-0 shadow-[0_0_0_0_transparent] transition-all duration-150 ease-out
+      hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0_0_var(--foreground)]
+      active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_0_var(--foreground)]
+      focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]
+      aria-busy:pointer-events-none aria-busy:cursor-progress
+      disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-transparent disabled:text-[var(--foreground)];
+  }
+
+  .btn-primary {
+    @apply bg-[var(--ontik-accent)] text-[var(--background)] hover:bg-[var(--lime)] hover:text-[var(--foreground)];
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--foreground)];
+  }
+
+  /* the smaller, flat buttons on the staff pages */
+  .btn-flat {
+    @apply relative inline-block cursor-pointer border-[2px] border-[var(--foreground)] px-4 py-2 text-center font-display text-sm font-bold uppercase tracking-[0.08em] disabled:opacity-50;
+  }
+
+  .btn-solid {
+    @apply bg-[var(--foreground)] text-[var(--background)];
+  }
+
+  .btn-outline {
+    @apply bg-transparent;
+  }
+
+  .input {
+    @apply w-full border-[2px] border-[var(--foreground)] bg-transparent px-4 py-2 font-body text-sm transition-colors
+      placeholder:text-[var(--foreground)]/40 hover:bg-[var(--surface-hover)] focus:bg-[var(--surface)]
+      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent)]
+      disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .field {
+    @apply mt-1 w-full border-[2px] border-[var(--foreground)] bg-transparent px-3 py-2 font-body text-sm outline-none;
+  }
+
+  .search {
+    @apply min-w-0 flex-1 border-[2px] border-[var(--foreground)] bg-transparent px-3 py-2 font-body text-sm outline-none;
+  }
+
+  .alert {
+    @apply border-[2px] border-red-600 px-3 py-2 font-body text-sm text-red-600;
+  }
+
+  .spinner {
+    @apply inline-block h-10 w-10 animate-spin rounded-full border-2 border-[var(--foreground)]/20 border-t-[var(--accent)];
+  }
+}

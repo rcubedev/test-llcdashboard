@@ -4,6 +4,7 @@ plugins {
     java
     idea
     id("org.springframework.boot") version "4.1.2" // todo(fut): version catalog
+    id("org.limelightcreatives.tailwind")
 }
 
 group = "org.limelightcreatives"
@@ -13,6 +14,10 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(25)
     }
+}
+
+tailwind {
+    version = providers.gradleProperty("tailwind.version")
 }
 
 repositories {
@@ -40,6 +45,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     mockitoAgent("org.mockito:mockito-core") { isTransitive = false }
+}
+
+sourceSets.main {
+    tailwind {
+        content.from("src/main/jte", "src/main/resources/static/js", "src/main/java")
+    }
 }
 
 tasks.test {
