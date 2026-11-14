@@ -5,6 +5,7 @@ plugins {
     idea
     id("org.springframework.boot") version "4.1.2" // todo(fut): version catalog
     id("org.limelightcreatives.tailwind")
+    id("gg.jte.gradle") version "3.2.5"
 }
 
 group = "org.limelightcreatives"
@@ -18,6 +19,10 @@ java {
 
 tailwind {
     version = providers.gradleProperty("tailwind.version")
+}
+
+jte {
+    generate()
 }
 
 repositories {
@@ -38,6 +43,8 @@ dependencies {
     mockitoAgent(springBoot)
 
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
+    implementation("gg.jte:jte:3.2.5")
+    implementation("gg.jte:jte-spring-boot-starter-4:3.2.5")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-security-oauth2-client")
