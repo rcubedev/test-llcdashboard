@@ -1,0 +1,10 @@
+build/
+.gradle/
+.kotlin/
+build-logic/build/
+build-logic/.gradle/
+build-logic/.kotlin/
+.idea/
+*.iml
+.git/
+.env

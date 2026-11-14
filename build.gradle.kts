@@ -119,6 +119,15 @@ tasks.bootRun {
     systemProperty("spring.profiles.active", "dev")
 }
 
+// one runnable jar, build/libs/dashboard.jar (what the Dockerfile runs), no extra -plain jar
+tasks.bootJar {
+    archiveFileName = "dashboard.jar"
+}
+
+tasks.jar {
+    enabled = false
+}
+
 /**
  * Adds the given [jar] as a java agent using the `-javaagent:<jar>` JVM argument
  *
