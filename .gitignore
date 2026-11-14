@@ -39,3 +39,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# gradle
+.gradle
+build/
+.kotlin
+
+# intellij
+.idea
+*.iml
+*.ipr
+*.iws
+
+# local settings and keys
+.env*
+*.pem
+
+# vercel
+.vercel
+
+# macos
+.DS_Store
