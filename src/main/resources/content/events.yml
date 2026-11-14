@@ -1,0 +1,72 @@
+# Events with a participant dashboard at /participant/<id> (the key, e.g. genesis). To add one, copy an entry,
+# give it a new key, and change it.
+#
+#   active:  false hides the event: /participant/<id> says it doesn't exist (the staff milestones page still
+#            reads its prizes).
+#   locked:  true shows "This event isn't open yet" instead of the dashboard.
+#   form-url: the Fillout form teams submit milestones with. The dashboard adds milestoneId, milestone, teamId
+#            and team to the address; Fillout passes them to /api/fillout/webhook.
+#   Milestones unlock in order (bonus ones are always open). Each needs a unique id: it's what the
+#   database stores, so don't change an id once teams have submitted it.
+events:
+  genesis:
+    name: Limelight GENESIS
+    tagline: Pilot event
+    active: true
+    locked: false
+    form-url: https://limelightcreatives.fillout.com/t/qyMeFhFzZuus
+    theme:
+      accent: "#01995C"
+      accent-secondary: "#81D7D4"
+    team-size: 3
+    milestones:
+      - id: production-ready
+        label: Production Ready
+        target-time: Day 1, after workshop 1
+        description: >-
+          The team has completed pre-production and is ready to start filming. They have a complete
+          storyboard/script, assigned roles, and have organised their locations, props and actors.
+        evidence: Completed storyboard
+        prize: Fidget Spinners
+      - id: wrapped-filming
+        label: Wrapped up with filming
+        target-time: Day 1, when they return from filming
+        description: >-
+          The team brings their phone/camera back and shows the footage they've captured. You don't need to
+          watch everything, just verify they've shot the material needed to construct their film.
+        evidence: Footage on their device / camera roll
+        prize: Story Factory 'Idea Mints' + Pencil & TMBL Piggy Banks
+      - id: first-cut
+        label: First Cut
+        target-time: Day 2, editing period
+        description: >-
+          A complete rough cut of the film. The whole film needs to exist from beginning to end, even if it's
+          ugly. It should have the basic footage in the right order and tell the complete story.
+        evidence: Playable rough cut
+        prize: TMBL Tote Bag + NIDA Hats
+      - id: polish
+        label: Polish
+        description: Quality check. The team has applied a consistent visual look across the entire project.
+        evidence: A playable export of the film
+        prize: TMBL Notebook (has a calc, old money)
+      - id: final-cut
+        label: Final Cut (feedback)
+        target-time: Before submissions close
+        description: >-
+          The film is completely finished, and the team has done one deliberate final review: it plays
+          correctly from beginning to end, the audio works, there are no accidental clips or black frames,
+          titles/credits are correct, it meets the required length and format, and everyone on the team is
+          happy with it.
+        evidence: Final exported film
+        prize: Limelight Creatives Custom T-Shirt
+      - id: team-player
+        label: Team Player
+        bonus: true
+        target-time: Any time throughout the weekend
+        description: >-
+          Awarded for helping another team progress with their film. This could be helping with filming,
+          acting, sound, editing, troubleshooting, or sharing a useful filmmaking skill.
+        evidence: The other team confirms they received meaningful help. Video recording will suffice.
+        prize: >-
+          Your choice of: 5 SAE eco bags, 5 SAE water bottles or 5 SAE USB flash drives.
+          !!! Only the first 15 people gets a prize !!!
