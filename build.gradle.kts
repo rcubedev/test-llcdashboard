@@ -54,6 +54,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-flyway")
     implementation("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")
+    // the check-in page's qr code scanner, served from the jar at /webjars/qr-scanner/... (no node, no copy in the repo)
+    // webjars-locator-lite lets pages leave the version out of the address
+    runtimeOnly("org.webjars.npm:qr-scanner:1.4.2")
+    runtimeOnly("org.webjars:webjars-locator-lite")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
