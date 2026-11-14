@@ -1,0 +1,990 @@
+{
+  "event": {
+    "name": "Limelight Genesis",
+    "subtitle": "Run of Show",
+    "timezone": "Australia/Sydney",
+    "leadId": "ontik",
+    "redirectNote": "Ontik may redirect you on the day."
+  },
+
+  "locations": {
+    "GA": "Golden Age Cinema",
+    "LT": "La Trobe",
+    "Park": "Park (off-site)",
+    "GA-front": "Front of Golden Age",
+    "LT-front": "Front of La Trobe"
+  },
+
+  "travel": [
+    {"between": ["GA", "LT"], "minutes": 10}
+  ],
+
+  "staff": [
+    {"id": "ontik", "name": "Ontik", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "arda", "name": "Arda", "availability": {"sat": false, "sun": ["08:00", "19:00"]}},
+    {"id": "dev", "name": "Dev", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "hayley", "name": "Hayley", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "joshua", "name": "Joshua", "availability": {"sat": [["07:30", "09:30"], ["11:30", "19:00"]], "sun": ["08:00", "19:00"]}},
+    {"id": "justin", "name": "Justin", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "meher", "name": "Meher", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "olivia", "name": "Olivia", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "riham", "name": "Riham", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "theo", "name": "Theo", "availability": {"sat": ["07:30", "19:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "amisha", "name": "Amisha", "availability": {"sat": ["07:30", "17:00"], "sun": ["08:00", "19:00"]}},
+    {"id": "mentors", "name": "Mentor", "note": "This is your base plan. Move to wherever participants are unsupervised.", "availability": {"sat": ["08:30", "18:30"], "sun": ["08:30", "18:30"]}}
+  ],
+
+  "roles": {
+    "Briefing": {
+      "location": "LT",
+      "steps": [
+        "Staff briefing",
+        "Drop off big items at La Trobe"
+      ]
+    },
+    "Walk to Golden Age": {
+      "location": "LT → GA",
+      "steps": [
+        "Walk to Golden Age (10 min) carrying the table, laptops (presentation + check-in) and breakfast"
+      ]
+    },
+    "La Trobe Setup": {
+      "location": "LT",
+      "steps": [
+        "Move boxes to the organiser room",
+        "Set up the Station: a long table with milestone prizes and rental equipment",
+        "Put no-entry signs on restricted rooms (games room, organiser room)",
+        "Test the AV in the lecture theatre",
+        "Put the participant dashboard QR code up in the 2 main rooms"
+      ]
+    },
+    "Golden Age Setup": {
+      "location": "GA",
+      "steps": [
+        "Set up the table and laptops",
+        "Lay out breakfast before doors open at 8:30am"
+      ]
+    },
+    "Breakfast Setup": {
+      "location": "LT",
+      "steps": [
+        "Lay out breakfast before doors open at 8:30am"
+      ]
+    },
+    "Check-In": {
+      "location": "GA-front",
+      "steps": [
+        "Scan each participant’s QR code",
+        "Not on the list: move them aside and have them sign the waiver. Call their parents if needed",
+        "If it’s busy, send them inside and sort them out later",
+        "Looks like an adult? They’re probably a mentor, so send them to Ontik"
+      ]
+    },
+    "Icebreakers": {
+      "steps": [
+        "Run icebreakers while participants have breakfast"
+      ]
+    },
+    "Speaking": {
+      "steps": [
+        "Run the ceremony or briefing"
+      ]
+    },
+    "Golden Age Support": {
+      "location": "GA",
+      "flexible": true,
+      "steps": [
+        "Help with seating and the crowd during the opening ceremony"
+      ]
+    },
+    "Breakfast Pack-Up": {
+      "location": "LT",
+      "steps": [
+        "Clear breakfast after the briefing starts"
+      ]
+    },
+    "Walk Group 1": {
+      "steps": [
+        "At 9:30am, collect your group of ~10",
+        "Headcount, then walk to La Trobe (10 min)",
+        "Headcount on arrival"
+      ]
+    },
+    "Walk Group 2": {
+      "steps": [
+        "At 9:30am, collect your group of ~10",
+        "Headcount, then walk to La Trobe (10 min)",
+        "Headcount on arrival"
+      ]
+    },
+    "Walk Group 3": {
+      "steps": [
+        "At 9:30am, collect your group of ~10",
+        "Headcount, then walk to La Trobe (10 min)",
+        "Headcount on arrival"
+      ]
+    },
+    "Walk Group 4": {
+      "steps": [
+        "At 9:30am, collect your group of ~10",
+        "Headcount, then walk to La Trobe (10 min)",
+        "Headcount on arrival"
+      ]
+    },
+    "Sort Teams + Walk Group 5": {
+      "steps": [
+        "Stay back and put teamless participants into teams of 3",
+        "Leave last with Walk Group 5 (~9:40am), with a headcount before and after"
+      ]
+    },
+    "Golden Age Pack-Up": {
+      "location": "GA",
+      "steps": [
+        "From 9:30am, pack the table and laptops",
+        "Carry them to La Trobe (arrive ~9:55am)"
+      ]
+    },
+    "La Trobe Receiving": {
+      "location": "LT",
+      "steps": [
+        "Meet groups at the entrance from ~9:40am",
+        "Point them to rooms; they choose seats until 10:15am"
+      ]
+    },
+    "Reception Duty": {
+      "location": "LT-front",
+      "steps": [
+        "Monitor who enters and leaves the venue",
+        "Point late arrivals and visitors to the right room"
+      ]
+    },
+    "Workshop Lead": {
+      "location": "LT",
+      "steps": [
+        "Deliver the workshop"
+      ]
+    },
+    "Workshop Prep": {
+      "location": "LT",
+      "steps": [
+        "Prepare the next workshop"
+      ]
+    },
+    "Workshop Support": {
+      "location": "LT",
+      "steps": [
+        "Help deliver the workshop and guide participants"
+      ]
+    },
+    "Workshop Floor Support": {
+      "location": "LT",
+      "flexible": true,
+      "steps": [
+        "Support participants on the workshop floor"
+      ]
+    },
+    "Floor Support": {
+      "location": "LT",
+      "flexible": true,
+      "steps": [
+        "Help participants and keep the room settled"
+      ]
+    },
+    "Station": {
+      "location": "LT",
+      "steps": [
+        "Staff the station (milestones + rental equipment + props)",
+        "Check team milestones; lend equipment and props",
+        "3 people normally, 2 during short catering or pack-up blocks; on Sunday from 3:00pm it also handles milestone 6 (submission) claims"
+      ]
+    },
+    "Quiet Room": {
+      "location": "LT",
+      "flexible": true,
+      "steps": [
+        "Supervise the quiet working room"
+      ]
+    },
+    "Working Space": {
+      "location": "LT",
+      "flexible": true,
+      "steps": [
+        "Supervise the main working space"
+      ]
+    },
+    "Filmmaking Rooms": {
+      "location": "LT",
+      "flexible": true,
+      "steps": [
+        "Supervise the filmmaking rooms"
+      ]
+    },
+    "Park": {
+      "location": "Park",
+      "flexible": true,
+      "steps": [
+        "Supervise teams filming at the park"
+      ]
+    },
+    "Park + Event Lead": {
+      "location": "Park",
+      "steps": [
+        "Supervise at the park",
+        "Move flexible staff to where participants are"
+      ]
+    },
+    "Park Return": {
+      "location": "Park → LT",
+      "steps": [
+        "Walk teams back from the Park to La Trobe by 1:00pm"
+      ]
+    },
+    "Event Lead": {
+      "steps": [
+        "Move flexible staff to where participants are"
+      ]
+    },
+    "Catering Lead": {
+      "steps": [
+        "Order, pick up and pay for food",
+        "Run lunch"
+      ]
+    },
+    "Catering Setup": {
+      "location": "LT",
+      "steps": [
+        "Set up food and the serving area before lunch"
+      ]
+    },
+    "Catering": {
+      "location": "LT",
+      "steps": [
+        "Serve food and keep the lunch area tidy"
+      ]
+    },
+    "Lunch Pack-Up": {
+      "location": "LT",
+      "steps": [
+        "Clear lunch"
+      ]
+    },
+    "Karaoke Host": {
+      "location": "LT",
+      "steps": [
+        "Run karaoke and activities",
+        "Wrap up by 5:15pm"
+      ]
+    },
+    "Karaoke & Activities Support": {
+      "location": "LT",
+      "steps": [
+        "Help run karaoke and activities"
+      ]
+    },
+    "Snacks Prep": {
+      "location": "LT",
+      "steps": [
+        "Prepare snacks for the wrap-up break"
+      ]
+    },
+    "Screening Setup": {
+      "location": "LT",
+      "steps": [
+        "Get the room and films ready for the 5:00pm screening"
+      ]
+    },
+    "Screening Host": {
+      "location": "LT",
+      "steps": [
+        "Run the screening of all films"
+      ]
+    },
+    "Snacks Setup": {
+      "location": "LT",
+      "steps": [
+        "Set out snacks for the wrap-up break"
+      ]
+    },
+    "Judge": {
+      "location": "LT",
+      "steps": [
+        "Score each film live on the platform (8 categories, /80)",
+        "Finalise winners during the wrap-up break"
+      ]
+    },
+    "Snacks": {
+      "location": "LT",
+      "steps": [
+        "Serve snacks during the wrap-up break"
+      ]
+    },
+    "Pack-Up": {
+      "location": "LT",
+      "steps": [
+        "Venue pack-up"
+      ]
+    },
+    "Supervision": {
+      "flexible": true,
+      "steps": [
+        "Roam your venue and look for any area with participants but no staff (rooms, corridors, the Park)",
+        "Stay and supervise that area until a staff member takes over or participants leave",
+        "If you see a problem you can’t handle, find Ontik"
+      ]
+    }
+  },
+
+  "days": [
+    {
+      "id": "sat",
+      "label": "Saturday",
+      "date": "2026-10-24",
+      "blocks": [
+        {
+          "start": "07:30", "end": "08:00", "location": "LT", "title": "Staff briefing + drop off big items",
+          "staff": {
+            "ontik": "Briefing",
+            "dev": "Briefing",
+            "hayley": "Briefing",
+            "joshua": "Briefing",
+            "justin": "Briefing",
+            "meher": "Briefing",
+            "olivia": "Briefing",
+            "riham": "Briefing",
+            "theo": "Briefing",
+            "amisha": "Briefing"
+          }
+        },
+        {
+          "start": "08:00", "end": "08:30", "location": "LT → GA", "title": "Walk to Golden Age + La Trobe setup",
+          "staff": {
+            "ontik": "Walk to Golden Age",
+            "dev": "Walk to Golden Age",
+            "hayley": "Walk to Golden Age",
+            "joshua": "La Trobe Setup",
+            "justin": "Walk to Golden Age",
+            "meher": "Walk to Golden Age",
+            "olivia": "La Trobe Setup",
+            "riham": "Walk to Golden Age",
+            "theo": "La Trobe Setup",
+            "amisha": "Walk to Golden Age"
+          }
+        },
+        {
+          "start": "08:30", "end": "09:00", "location": "GA", "participants": "Doors open: check-in, breakfast, icebreakers", "participantNote": "A videographer is filming the event.",
+          "staff": {
+            "ontik": "Golden Age Setup",
+            "dev": "Check-In",
+            "hayley": "Icebreakers",
+            "joshua": "La Trobe Setup",
+            "justin": "Check-In",
+            "meher": "Check-In",
+            "olivia": "La Trobe Setup",
+            "riham": "Golden Age Setup",
+            "theo": "La Trobe Setup",
+            "amisha": "Check-In",
+            "mentors": {"role": "Supervision", "location": "GA", "note": "Meet staff at Golden Age at 8:30; help during check-in, breakfast and opening"}
+          }
+        },
+        {
+          "start": "09:00", "end": "09:30", "location": "GA", "participants": "Opening ceremony",
+          "staff": {
+            "ontik": "Speaking",
+            "dev": "Golden Age Support",
+            "hayley": "Golden Age Support",
+            "joshua": "La Trobe Setup",
+            "justin": "Golden Age Support",
+            "meher": "Golden Age Support",
+            "olivia": "La Trobe Setup",
+            "riham": "Golden Age Support",
+            "theo": "La Trobe Setup",
+            "amisha": "Golden Age Support",
+            "mentors": {"role": "Supervision", "location": "GA", "note": "Meet staff at Golden Age at 8:30; help during check-in, breakfast and opening"}
+          }
+        },
+        {
+          "start": "09:30", "end": "09:45", "location": "GA → LT", "participants": "Walk to La Trobe in 5 groups",
+          "staff": {
+            "ontik": "Sort Teams + Walk Group 5",
+            "dev": "Walk Group 3",
+            "hayley": "Walk Group 4",
+            "justin": "Walk Group 1",
+            "meher": "Walk Group 2",
+            "olivia": "La Trobe Receiving",
+            "riham": "Golden Age Pack-Up",
+            "theo": "La Trobe Receiving",
+            "amisha": "Golden Age Pack-Up",
+            "mentors": {"role": "Supervision", "location": "GA → LT", "note": "Walk with the groups"}
+          }
+        },
+        {
+          "start": "09:45", "end": "10:15", "location": "LT", "participants": "Settle in, choose seats",
+          "staff": {
+            "ontik": "Event Lead",
+            "dev": "Quiet Room",
+            "hayley": "Filmmaking Rooms",
+            "justin": "Reception Duty",
+            "meher": "Working Space",
+            "olivia": "La Trobe Receiving",
+            "riham": "Workshop Prep",
+            "theo": "La Trobe Receiving",
+            "amisha": "Workshop Floor Support",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "10:15", "end": "11:15", "location": "LT", "participants": "Storyboarding workshop (compulsory) · includes La Trobe venue info and Helen’s safety talk",
+          "staff": {
+            "ontik": "Event Lead",
+            "dev": "Station",
+            "hayley": "Workshop Floor Support",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Workshop Support",
+            "riham": "Workshop Lead",
+            "theo": "Reception Duty",
+            "amisha": "Workshop Support",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "11:15", "end": "11:45", "location": "LT", "participants": "Working session",
+          "staff": {
+            "ontik": "Event Lead",
+            "dev": "Station",
+            "hayley": "Reception Duty",
+            "justin": "Station",
+            "meher": "Catering Lead",
+            "olivia": "Quiet Room",
+            "riham": "Floor Support",
+            "theo": "Working Space",
+            "amisha": "Filmmaking Rooms",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "11:45", "end": "12:45", "location": "Park / LT", "participants": "Off-site filming", "participantLocation": "Park", "staffLocation": "LT",
+          "staff": {
+            "ontik": "Park + Event Lead",
+            "dev": "Park",
+            "hayley": "Park",
+            "joshua": "Park",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Reception Duty",
+            "riham": "Station",
+            "theo": "Park",
+            "amisha": "Quiet Room",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "12:45", "end": "13:15", "location": "Park / LT", "participants": "Off-site filming", "participantLocation": "Park", "staffLocation": "LT",
+          "staff": {
+            "ontik": "Park + Event Lead",
+            "dev": "Park",
+            "hayley": "Park",
+            "joshua": "Park",
+            "justin": "Station",
+            "meher": "Catering Lead",
+            "olivia": "Station",
+            "riham": "Workshop Prep",
+            "theo": "Park",
+            "amisha": "Reception Duty",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "13:15", "end": "13:30", "location": "LT", "participants": "Return to La Trobe, settle",
+          "staff": {
+            "ontik": "Event Lead",
+            "dev": "Park Return",
+            "hayley": "Park Return",
+            "joshua": "Park Return",
+            "justin": "Station",
+            "meher": "Catering Lead",
+            "olivia": "Station",
+            "riham": "Reception Duty",
+            "theo": "Park Return",
+            "amisha": "Working Space",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "13:30", "end": "14:00", "location": "LT", "participants": "Filming workshop (optional)",
+          "staff": {
+            "ontik": "Event Lead",
+            "dev": "Working Space",
+            "hayley": "Workshop Support",
+            "joshua": "Station",
+            "justin": "Station",
+            "meher": "Catering Lead",
+            "olivia": "Workshop Support",
+            "riham": "Workshop Lead",
+            "theo": "Reception Duty",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "14:00", "end": "14:30", "location": "LT", "participants": "Filming workshop (optional)",
+          "staff": {
+            "ontik": "Event Lead",
+            "dev": "Working Space",
+            "hayley": "Workshop Support",
+            "joshua": "Station",
+            "justin": "Station",
+            "meher": "Catering Lead",
+            "olivia": "Workshop Support",
+            "riham": "Workshop Lead",
+            "theo": "Reception Duty",
+            "amisha": "Catering Setup",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "14:30", "end": "15:30", "location": "LT", "participants": "Lunch",
+          "staff": {
+            "ontik": "Catering",
+            "dev": "Catering",
+            "hayley": "Catering",
+            "joshua": "Reception Duty",
+            "justin": "Station",
+            "meher": "Catering Lead",
+            "olivia": "Station",
+            "riham": "Station",
+            "theo": "Catering",
+            "amisha": "Catering",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "15:30", "end": "16:00", "location": "Park / LT", "participants": "Off-site filming", "participantLocation": "Park", "staffLocation": "LT",
+          "staff": {
+            "ontik": "Park + Event Lead",
+            "dev": "Park",
+            "hayley": "Park",
+            "joshua": "Park",
+            "justin": "Station",
+            "meher": "Lunch Pack-Up",
+            "olivia": "Reception Duty",
+            "riham": "Station",
+            "theo": "Park",
+            "amisha": "Lunch Pack-Up",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "16:00", "end": "16:45", "location": "Park / LT", "participants": "Off-site filming", "participantLocation": "Park", "staffLocation": "LT",
+          "staff": {
+            "ontik": "Park + Event Lead",
+            "dev": "Park",
+            "hayley": "Park",
+            "joshua": "Park",
+            "justin": "Reception Duty",
+            "meher": "Station",
+            "olivia": "Station",
+            "riham": "Quiet Room",
+            "theo": "Park",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "16:45", "end": "17:15", "location": "LT", "participants": "Karaoke & Activities",
+          "staff": {
+            "ontik": "Karaoke Host",
+            "dev": "Station",
+            "hayley": "Karaoke & Activities Support",
+            "joshua": "Karaoke Host",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Working Space",
+            "riham": "Quiet Room",
+            "theo": "Reception Duty",
+            "amisha": "Karaoke & Activities Support",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "17:15", "end": "18:15", "location": "LT", "participants": "Working session",
+          "staff": {
+            "ontik": "Event Lead",
+            "dev": "Station",
+            "hayley": "Filmmaking Rooms",
+            "joshua": "Working Space",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Working Space",
+            "riham": "Reception Duty",
+            "theo": "Quiet Room",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "18:15", "end": "18:30", "location": "LT", "participants": "Participant pack-up",
+          "staff": {
+            "ontik": "Pack-Up",
+            "dev": "Pack-Up",
+            "hayley": "Pack-Up",
+            "joshua": "Pack-Up",
+            "justin": "Pack-Up",
+            "meher": "Pack-Up",
+            "olivia": "Pack-Up",
+            "riham": "Pack-Up",
+            "theo": "Pack-Up",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "18:30", "location": "LT", "participants": "End of day (participants leave)"
+        },
+        {
+          "start": "18:30", "end": "19:00", "location": "LT", "title": "Staff pack-up",
+          "staff": {
+            "ontik": "Pack-Up",
+            "dev": "Pack-Up",
+            "hayley": "Pack-Up",
+            "joshua": "Pack-Up",
+            "justin": "Pack-Up",
+            "meher": "Pack-Up",
+            "olivia": "Pack-Up",
+            "riham": "Pack-Up",
+            "theo": "Pack-Up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sun",
+      "label": "Sunday",
+      "date": "2026-10-25",
+      "blocks": [
+        {
+          "start": "08:00", "end": "08:30", "location": "LT", "title": "Staff setup",
+          "staff": {
+            "ontik": "La Trobe Setup",
+            "arda": "Breakfast Setup",
+            "dev": "La Trobe Setup",
+            "hayley": "La Trobe Setup",
+            "joshua": "La Trobe Setup",
+            "justin": "La Trobe Setup",
+            "meher": "La Trobe Setup",
+            "olivia": "Breakfast Setup",
+            "riham": "La Trobe Setup",
+            "theo": "La Trobe Setup",
+            "amisha": "La Trobe Setup"
+          }
+        },
+        {
+          "start": "08:30", "end": "09:00", "location": "LT", "participants": "Doors open: check-in + breakfast", "participantNote": "A videographer is filming the event.",
+          "staff": {
+            "ontik": "Event Lead",
+            "arda": "Catering Lead",
+            "dev": {"role": "Check-In", "location": "LT-front"},
+            "hayley": {"role": "Check-In", "location": "LT-front"},
+            "joshua": "Filmmaking Rooms",
+            "justin": {"role": "Check-In", "location": "LT-front"},
+            "meher": "Working Space",
+            "olivia": "Catering",
+            "riham": "Catering",
+            "theo": "Quiet Room",
+            "amisha": {"role": "Check-In", "location": "LT-front"},
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "09:00", "end": "09:15", "location": "LT", "participants": "Participant briefing",
+          "staff": {
+            "ontik": "Speaking",
+            "arda": "Breakfast Pack-Up",
+            "dev": "Floor Support",
+            "hayley": "Floor Support",
+            "joshua": "Floor Support",
+            "justin": "Reception Duty",
+            "meher": "Floor Support",
+            "olivia": "Floor Support",
+            "riham": "Floor Support",
+            "theo": "Floor Support",
+            "amisha": "Floor Support",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "09:15", "end": "10:30", "location": "LT", "participants": "Working session",
+          "staff": {
+            "ontik": "Event Lead",
+            "arda": "Working Space",
+            "dev": "Station",
+            "hayley": "Working Space",
+            "joshua": "Filmmaking Rooms",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Working Space",
+            "riham": "Quiet Room",
+            "theo": "Quiet Room",
+            "amisha": "Reception Duty",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "10:30", "end": "11:30", "location": "Park / LT", "participants": "Off-site filming", "participantLocation": "Park", "staffLocation": "LT",
+          "staff": {
+            "ontik": "Park + Event Lead",
+            "arda": "Catering Lead",
+            "dev": "Park",
+            "hayley": "Park",
+            "joshua": "Park",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Reception Duty",
+            "riham": "Park",
+            "theo": "Park",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "11:30", "end": "12:30", "location": "Park / LT", "participants": "Off-site filming", "participantLocation": "Park", "staffLocation": "LT",
+          "staff": {
+            "ontik": "Park + Event Lead",
+            "arda": "Catering Lead",
+            "dev": "Park",
+            "hayley": "Park",
+            "joshua": "Park",
+            "justin": "Station",
+            "meher": "Reception Duty",
+            "olivia": "Station",
+            "riham": "Park",
+            "theo": "Park",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "12:30", "end": "12:45", "location": "Park / LT", "participants": "Off-site filming", "participantLocation": "Park", "staffLocation": "LT",
+          "staff": {
+            "ontik": "Workshop Prep",
+            "arda": "Catering Lead",
+            "dev": "Park",
+            "hayley": "Park",
+            "joshua": "Workshop Prep",
+            "justin": "Station",
+            "meher": "Reception Duty",
+            "olivia": "Station",
+            "riham": "Park",
+            "theo": "Park",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "12:45", "end": "13:00", "location": "LT", "participants": "Return to La Trobe, settle",
+          "staff": {
+            "ontik": "Workshop Prep",
+            "arda": "Catering Lead",
+            "dev": "Park Return",
+            "hayley": "Park Return",
+            "joshua": "Workshop Prep",
+            "justin": "Reception Duty",
+            "meher": "Station",
+            "olivia": "Station",
+            "riham": "Park Return",
+            "theo": "Park Return",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "13:00", "end": "13:30", "location": "LT", "participants": "Editing workshop (optional, DaVinci Resolve)",
+          "staff": {
+            "ontik": "Workshop Lead",
+            "arda": "Catering Lead",
+            "dev": "Station",
+            "hayley": "Filmmaking Rooms",
+            "joshua": "Workshop Lead",
+            "justin": "Reception Duty",
+            "meher": "Station",
+            "olivia": "Working Space",
+            "riham": "Workshop Support",
+            "theo": "Quiet Room",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "13:30", "end": "14:00", "location": "LT", "participants": "Editing workshop (optional, DaVinci Resolve)",
+          "staff": {
+            "ontik": "Workshop Lead",
+            "arda": "Catering Lead",
+            "dev": "Station",
+            "hayley": "Reception Duty",
+            "joshua": "Workshop Lead",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Catering Setup",
+            "riham": "Workshop Support",
+            "theo": "Quiet Room",
+            "amisha": "Catering Setup",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "14:00", "end": "15:00", "location": "LT", "participants": "Lunch",
+          "staff": {
+            "ontik": "Catering",
+            "arda": "Catering Lead",
+            "dev": "Catering",
+            "hayley": "Catering",
+            "joshua": "Catering",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Station",
+            "riham": "Catering",
+            "theo": "Reception Duty",
+            "amisha": "Catering",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "15:00", "end": "15:30", "location": "LT", "participants": "Working session · submissions open",
+          "staff": {
+            "ontik": "Event Lead",
+            "arda": "Lunch Pack-Up",
+            "dev": "Station",
+            "hayley": "Working Space",
+            "joshua": "Filmmaking Rooms",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Reception Duty",
+            "riham": "Working Space",
+            "theo": "Quiet Room",
+            "amisha": "Lunch Pack-Up",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "15:30", "end": "16:00", "location": "LT", "participants": "Working session · submissions open",
+          "staff": {
+            "ontik": "Event Lead",
+            "arda": "Working Space",
+            "dev": "Working Space",
+            "hayley": "Working Space",
+            "joshua": "Filmmaking Rooms",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Working Space",
+            "riham": "Reception Duty",
+            "theo": "Quiet Room",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "16:00", "end": "16:45", "location": "LT", "participants": "Shipping: final submissions (close 16:45)",
+          "staff": {
+            "ontik": "Event Lead",
+            "arda": "Snacks Prep",
+            "dev": "Working Space",
+            "hayley": "Working Space",
+            "joshua": "Filmmaking Rooms",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Working Space",
+            "riham": "Reception Duty",
+            "theo": "Quiet Room",
+            "amisha": "Station",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "16:45", "end": "17:00", "location": "LT", "participants": "Take seats for the screening",
+          "staff": {
+            "ontik": "Screening Setup",
+            "arda": "Snacks Prep",
+            "dev": "Floor Support",
+            "hayley": "Reception Duty",
+            "joshua": "Floor Support",
+            "justin": "Floor Support",
+            "meher": "Floor Support",
+            "olivia": "Floor Support",
+            "riham": "Screening Setup",
+            "theo": "Floor Support",
+            "amisha": "Floor Support",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "17:00", "end": "17:45", "location": "LT", "participants": "Screening: all films together, live judging",
+          "staff": {
+            "ontik": "Screening Host",
+            "arda": "Snacks Setup",
+            "dev": "Floor Support",
+            "hayley": "Reception Duty",
+            "joshua": "Floor Support",
+            "justin": "Floor Support",
+            "meher": "Floor Support",
+            "olivia": "Floor Support",
+            "riham": "Judge",
+            "theo": "Judge",
+            "amisha": "Floor Support",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "17:45", "end": "18:00", "location": "LT", "participants": "Wrap-up break: pack up, claim milestones, swap contacts, snacks",
+          "staff": {
+            "ontik": "Event Lead",
+            "arda": "Snacks",
+            "dev": "Station",
+            "hayley": "Floor Support",
+            "joshua": "Floor Support",
+            "justin": "Station",
+            "meher": "Station",
+            "olivia": "Snacks",
+            "riham": "Judge",
+            "theo": "Judge",
+            "amisha": "Reception Duty",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "18:00", "end": "18:30", "location": "LT", "participants": "Closing ceremony + awards",
+          "staff": {
+            "ontik": "Speaking",
+            "arda": "Floor Support",
+            "dev": "Floor Support",
+            "hayley": "Floor Support",
+            "joshua": "Floor Support",
+            "justin": "Floor Support",
+            "meher": "Floor Support",
+            "olivia": "Floor Support",
+            "riham": "Floor Support",
+            "theo": "Floor Support",
+            "amisha": "Reception Duty",
+            "mentors": {"role": "Supervision", "location": "LT / Park"}
+          }
+        },
+        {
+          "start": "18:30", "location": "LT", "participants": "End of day (participants leave)"
+        },
+        {
+          "start": "18:30", "end": "19:00", "location": "LT", "title": "Staff pack-up",
+          "staff": {
+            "ontik": "Pack-Up",
+            "arda": "Pack-Up",
+            "dev": "Pack-Up",
+            "hayley": "Pack-Up",
+            "joshua": "Pack-Up",
+            "justin": "Pack-Up",
+            "meher": "Pack-Up",
+            "olivia": "Pack-Up",
+            "riham": "Pack-Up",
+            "theo": "Pack-Up",
+            "amisha": "Pack-Up"
+          }
+        }
+      ]
+    }
+  ]
+}
